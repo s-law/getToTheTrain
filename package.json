@@ -1,0 +1,23 @@
+{
+  "name": "gt3-server",
+  "version": "1.0.0",
+  "description": "Transit station location, access time, and other related data",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-law/2015-11-mvp.git"
+  },
+  "author": "Steven Law <slaw@nuclearanvil.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s-law/2015-11-mvp/issues"
+  },
+  "homepage": "https://github.com/s-law/2015-11-mvp#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.3.4"
+  }
+}
