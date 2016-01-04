@@ -16,29 +16,32 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Get To The Train! (GT3) ##
+  Get To The Train
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Wait less, go more
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Minimize the time spent waiting on the platform for the next train.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  What's worse than missing the train? Running to the platform, just to find out that you just missed the train and have to wait another 15-20 minutes for the next train.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  GT3 will show you the closest train station and the time of departure for the next train for each destination. The times are color coded according to your actual distance from the station:
+  - Green: Plenty of time!
+  - Yellow: If you run, you'll have a minute or two to spare.
+  - Red: Figure on taking the next train.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  "I'm not just the developer, I'm also a user!" -Steven Law
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  Just launch GT3--either by opening your browser or launching it from your home screen--and GT3 will be working for you!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "After I started using 'Get To The Train', I've never had to wait more than 5 minutes for a late-night BART train!" - John Smith
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  Visit [url] to start using GT3 today!
