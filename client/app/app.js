@@ -1,6 +1,6 @@
 angular.module('gt3', [
+  'gt3.bart',
   'ngRoute'
-
 ])
 .config(function ($routeProvider) {
   $routeProvider
