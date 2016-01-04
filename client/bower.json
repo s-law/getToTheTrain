@@ -1,0 +1,23 @@
+{
+  "name": "Get To The Train",
+  "homepage": "https://github.com/s-law/2015-11-mvp",
+  "authors": [
+    "Steven Law <slaw@nuclearanvil.com>"
+  ],
+  "description": "Minimize platform wait times.",
+  "main": "app.js",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.4.8",
+    "angular": "~1.4.8"
+  }
+}
