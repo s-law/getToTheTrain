@@ -1,10 +1,19 @@
 var Bart = require('./bartModel.js');
 
 module.exports = {
-  stations: function(req, res, next) {
-    // make query here
-    .then(function(stations) {
-      res.json(stations);
-    })
-  };
+  allStations: function(req, res, next) {
+    Bart.find({}, function(err, stations) {
+      console.log(stations);
+      var stationList = {};
+
+      stations.forEach(function(station) {
+        stationList[station.shortname] = [station.lonDist, station.latDist];
+      });
+      res.send(stationList);
+    });
+  },
+
+  nearestStation: function(req, res, next) {
+    return;
+  }
 }
