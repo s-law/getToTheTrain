@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+}
+
+.destination .time{
+  color: white;
+}
+
+.destination .time.blue {
+  background-color: blue;
+}
+
+.destination .time.green {
+  background-color: green;
+}
+
+.destination .time.yellow {
+  background-color: yellow;
+}
+
+.destination .time.red {
+  background-color: red;
+}
