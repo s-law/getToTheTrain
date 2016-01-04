@@ -3,8 +3,8 @@ var mongoose = require('mongoose');
 var BartSchema = new mongoose.Schema({
   fullname: String,
   shortname: String,
-  lonDist: Number,
-  latDist: Number
+  lon: Number,
+  lat: Number
 })
 
-module.exports = mongoose.model('Bart', BartSchema);
+module.exports = mongoose.model('Bart', BartSchema, 'Barts');
