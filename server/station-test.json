@@ -1,6 +1,50 @@
-{
-  "longname": "Powell St.",
-  "shortname": "POWL",
-  "lonDist": "37.784991",
-  "latDist": "-122.406857"
-}
+[
+  {
+    "longname": "Embarcadero",
+    "shortname": "EMBR",
+    "lon": "37.792976",
+    "lat": "-122.396742"
+  },
+  {
+    "longname": "Montgomery",
+    "shortname": "MONT",
+    "lon": "37.789256",
+    "lat": "-122.401407"
+  },
+  {
+    "longname": "Powell St.",
+    "shortname": "POWL",
+    "lon": "37.784991",
+    "lat": "-122.406857"
+  },
+  {
+    "longname": "Civic Center",
+    "shortname": "CIVC",
+    "lon": "37.779528",
+    "lat": "-122.413756"
+  },
+  {
+    "longname": "16th St. Mission",
+    "shortname": "16TH",
+    "lon": "37.765062",
+    "lat": "-122.419694"
+  },
+  {
+    "longname": "24th St. Mission",
+    "shortname": "24TH",
+    "lon": "37.752254",
+    "lat": "-122.418466"
+  },
+  {
+    "longname": "Glen Park",
+    "shortname": "GLEN",
+    "lon": "37.732921",
+    "lat": "-122.434092"
+  },
+  {
+    "longname": "Balboa Park",
+    "shortname": "BALB",
+    "lon": "37.72198087",
+    "lat": "-122.4474142"
+  }
+]
