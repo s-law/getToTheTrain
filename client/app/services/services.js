@@ -4,11 +4,11 @@ angular.module('shortly.services', [])
     getStations: function() {
       return $http({
         method: 'GET',
-        url: '/api/stations'
+        url: '/api/bart-stations'
       })
       .then(function (res) {
         return res.data;
       })
     };
   }
-})
+});
