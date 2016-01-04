@@ -1,5 +1,6 @@
 angular.module('gt3', [
   'gt3.bart',
+  'gt3.services',
   'ngRoute'
 ])
 .config(function ($routeProvider) {
@@ -9,6 +10,6 @@ angular.module('gt3', [
       controller: 'BartController'
     })
     .otherwise({
-      redirectTo: '/bart'
+      redirectTo: "/bart"
     });
 })
