@@ -31,10 +31,12 @@ module.exports = {
 
         var destinations = destEtdObjs.map(function(destEtdObj) {
           var destName = destEtdObj.destination[0];
-          var departTimes = destEtdObj.estimate.map(function(anEtd) {
-            var time = parseInt(anEtd.minutes[0])
-            if (!isNaN(time))
-            return time;
+          var departTimes = []
+          destEtdObj.estimate.forEach(function(anEtd) {
+            var time = anEtd.minutes[0];
+            if (time !== 'Leaving') {
+              departTimes.push(time);
+            }
           });
 
           var destination = {};
