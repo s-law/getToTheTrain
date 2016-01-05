@@ -1,4 +1,5 @@
 var request = require('request');
+var parseString = require('xml2js').parseString;
 
 module.exports = {
   // optimized Haversine formula:
@@ -11,5 +12,12 @@ module.exports = {
             (1 - c((lon2 - lon1) * p))/2;
 
     return 7918 * Math.asin(Math.sqrt(a)); // 2 * R; R = 3959 mi
+  },
+  bartParse: function(url, cb) {
+    request(url, function(err, res, xml) {
+      parseString(xml, function(err, result) {
+        cb(result);
+      });
+    });
   }
 }
