@@ -20,7 +20,7 @@ module.exports = {
 
     Bart.find({}, function(err, stations) {
       var closest = stations.map(function(stn) {
-        return [stn.shortname, utils.calcDistance(lat, lon, stn.lon, stn.lat)];
+        return [stn.shortname, utils.calcDistance(lat, lon, stn.lon, stn.lat), stn.longname];
       })
       .reduce(function(a, b, i, stationList) {
         return a[1] < b[1] ? a : b;
@@ -41,7 +41,12 @@ module.exports = {
 
           return destination;
         });
-        res.send(destinations);
+
+        var destSet = {};
+        destSet['closest'] = closest[2];
+        destSet['destinations'] = destinations;
+        destSet['distanceFrom'] = closest[1];
+        res.send(destSet);
       });
     });
   }
