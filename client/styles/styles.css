@@ -2,8 +2,34 @@ body {
   font-family: sans-serif;
 }
 
+.view {
+  text-align: center;
+}
+
+.h2, .destinations, .destination {
+  margin: 0 auto;
+}
+
+.destination {
+  width: 70%;
+  padding: 10px 10px 30px 10px;
+  margin: 10px;
+  border: 2px solid black;
+
+}
+
+.destination-name {
+  font-size: 150%;
+  width: 100%;
+  padding-bottom: 20px;
+  margin: 10px;
+}
+
 .destination .time{
   color: white;
+  width: 150px;
+  padding: 20px;
+  margin: 10px;
 }
 
 .destination .time.blue {
@@ -15,7 +41,7 @@ body {
 }
 
 .destination .time.yellow {
-  background-color: yellow;
+  background-color: orange;
 }
 
 .destination .time.red {
