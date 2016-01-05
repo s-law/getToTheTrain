@@ -1,8 +1,8 @@
 angular.module('gt3.bart', [])
 .controller('BartController', function($scope, Bart) {
-  $scope.data = {};
-  Bart.getStations()
+  Bart.nearestStation()
   .then(function(data) {
+    console.log(data);
     $scope.destinations = data;
-  })
+  });
 })
