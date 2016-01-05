@@ -1,9 +1,12 @@
 <div class='system'>
   <h2>Closest Station: {{ destinations.closest }}</h2>
-  <div class='destination' ng-repeat='destination in destinations.destinations'>
-    {{ destination.station }}
-    <div>
-      <span class='time' ng-class='classifyTime(time)' ng-repeat='time in destination.departs'>{{ time }}</div>
+  <div class = 'destinations'>
+    <div class='destination' ng-repeat='destination in destinations.destinations'>
+      <div class='destination-name'>{{ destination.station }}</div>
+      <div class='times'>
+        <span class='time' ng-class='classifyTime(time)' ng-repeat='time in destination.departs'>{{ time }} min</span>
+      </div>
+      </div>
     </div>
   </div>
 </div>
