@@ -15,7 +15,6 @@ angular.module('gt3.services', [])
       function getPos() {
         return $q(function(resolve, reject) {
           navigator.geolocation.watchPosition(function(position) {
-            console.log(position);
             position = {
               lat: position.coords.latitude,
               lon: position.coords.longitude
