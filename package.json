@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/s-law/2015-11-mvp#readme",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "express": "^4.13.3",
     "mongoose": "^4.3.4"
   }
