@@ -20,7 +20,7 @@ module.exports = {
 
     Bart.find({}, function(err, stations) {
       var closest = stations.map(function(stn) {
-        return [stn.shortname, utils.calcDistance(lat, lon, stn.lon, stn.lat), stn.longname];
+        return [stn.shortname, utils.calcDistance(lat, lon, stn.lat, stn.lon), stn.longname];
       })
       .reduce(function(a, b, i, stationList) {
         return a[1] < b[1] ? a : b;
