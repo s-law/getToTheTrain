@@ -30,14 +30,15 @@ module.exports = {
     var lon = req.body.lon;
 
     Bart.find({}, function(err, stations) {
-      var stationList = [];
-      
-      stations.forEach(function(stn) {
-        stationList.push([stn.shortname, dist(lat, lon, stn.lon, stn.lat)]);
+      var closest = stations.map(function(stn) {
+        return [stn.shortname, dist(lat, lon, stn.lon, stn.lat)];
+      })
+      .reduce(function(a, b, i, stationList) {
+        return a[1] < b[1] ? a : b;
       });
 
-      console.log(stationList);
-      res.send(stationList);
+      console.log(closest);
+      res.send(closest);
     });
   }
 }
