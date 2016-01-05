@@ -1,9 +1,19 @@
 body {
   font-family: 'Roboto', sans-serif;
   text-align: center;
+  margin: 0;
 }
 
-.h1, .destinations, .destination, footer {
+.trim {
+  color: white;
+  font-size: 200%;
+  width: 100%;
+  background-color: red;
+  padding: 20px;
+  margin: 0;
+  box-shadow: 0 10px 5px #888888;
+}
+.h1, .destinations, .destination, .trim {
   margin: 0 auto;
 }
 
