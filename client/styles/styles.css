@@ -6,20 +6,22 @@ body {
   text-align: center;
 }
 
-.h2, .destinations, .destination {
+.h1, .destinations, .destination {
   margin: 0 auto;
 }
 
 .destination {
-  width: 70%;
+  width: 40%;
+  max-width: 600px;
+  min-width: 500px;
   padding: 10px 10px 30px 10px;
   margin: 10px;
   border: 2px solid black;
-
+  display: inline-block;
 }
 
 .destination-name {
-  font-size: 150%;
+  font-size: 175%;
   width: 100%;
   padding-bottom: 20px;
   margin: 10px;
@@ -32,18 +34,49 @@ body {
   margin: 10px;
 }
 
-.destination .time.blue {
-  background-color: blue;
+@media only screen and (min-device-width: 481px) {
+  .destination .time.blue {
+    background-color: blue;
+  }
+
+  .destination .time.green {
+    background-color: green;
+  }
+
+  .destination .time.yellow {
+    background-color: orange;
+  }
+
+  .destination .time.red {
+    background-color: red;
+  }
 }
 
-.destination .time.green {
-  background-color: green;
-}
+@media only screen and (max-device-width: 480px) {
+  .destination-name, .time {
+    color: white;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
 
-.destination .time.yellow {
-  background-color: orange;
-}
+  .destination.blue {
+    background-color: blue;
+  }
 
-.destination .time.red {
-  background-color: red;
+  .destination.green {
+    background-color: green;
+  }
+
+  .destination.yellow {
+    background-color: orange;
+  }
+
+  .destination.red {
+    background-color: red;
+  }
+
+  .time:first-of-type {
+    font-size: 160%;
+  }
 }
