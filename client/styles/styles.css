@@ -1,12 +1,9 @@
 body {
-  font-family: sans-serif;
-}
-
-.view {
+  font-family: 'Roboto', sans-serif;
   text-align: center;
 }
 
-.h1, .destinations, .destination {
+.h1, .destinations, .destination, footer {
   margin: 0 auto;
 }
 
@@ -27,11 +24,17 @@ body {
   margin: 10px;
 }
 
-.destination .time{
+.destination .time {
   color: white;
   width: 150px;
   padding: 20px;
   margin: 10px;
+}
+
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
 }
 
 @media only screen and (min-device-width: 481px) {
@@ -53,11 +56,8 @@ body {
 }
 
 @media only screen and (max-device-width: 480px) {
-  .destination-name, .time {
+  .destination-name {
     color: white;
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
   }
 
   .destination.blue {
@@ -78,5 +78,9 @@ body {
 
   .time:first-of-type {
     font-size: 160%;
+  }
+
+  .credit {
+    display: none;
   }
 }
