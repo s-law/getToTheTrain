@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var BartSchema = new mongoose.Schema({
-  fullname: String,
+  longname: String,
   shortname: String,
   lon: Number,
   lat: Number
