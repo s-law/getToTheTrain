@@ -11,10 +11,11 @@ angular.module('gt3.services', [])
       })
     },
     nearestStation: function() {
-      // promisifies getCurrentPosition()
+      // promisifies watchCurrentPosition()
       function getPos() {
         return $q(function(resolve, reject) {
-          navigator.geolocation.getCurrentPosition(function (position) {
+          navigator.geolocation.watchPosition(function(position) {
+            console.log(position);
             position = {
               lat: position.coords.latitude,
               lon: position.coords.longitude
@@ -22,6 +23,10 @@ angular.module('gt3.services', [])
             resolve(position);
           }, function(err) {
             reject(err);
+          }, {
+            enableHighAccuracy: true, 
+            maximumAge        : 0, 
+            timeout           : 15000
           });
         })
       }
