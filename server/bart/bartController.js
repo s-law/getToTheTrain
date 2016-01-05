@@ -36,7 +36,8 @@ module.exports = {
           });
 
           var destination = {};
-          destination[destName] = departTimes;
+          destination['station'] = destName;
+          destination['departs'] = departTimes;
 
           return destination;
         });
