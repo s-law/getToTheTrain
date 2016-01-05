@@ -1,6 +1,8 @@
 <div class='system'>
   <div class='destination' ng-repeat='destination in destinations'>
-    {{ destination.name }}
-    <div class='time' ng-class=''>{{ destination.time }}</div>
+    {{ destination.station }}
+    <div>
+      <span class='time' ng-class='' ng-repeat='time in destination.departs'>{{ time }}</div>
+    </div>
   </div>
 </div>
