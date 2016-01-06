@@ -11,10 +11,10 @@ angular.module('gt3.services', [])
       })
     },
     nearestStation: function() {
-      // promisifies watchCurrentPosition()
+      // promisifies getCurrentPosition()
       function getPos() {
         return $q(function(resolve, reject) {
-          navigator.geolocation.watchPosition(function(position) {
+          navigator.geolocation.getCurrentPosition(function(position) {
             position = {
               lat: position.coords.latitude,
               lon: position.coords.longitude
