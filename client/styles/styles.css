@@ -18,6 +18,9 @@ body {
 }
 
 .destination {
+  width: 50%;
+  max-width: 600px;
+  min-width: 500px;
   padding: 10px 10px 30px 10px;
   margin: 10px;
   border: 2px solid black;
@@ -44,13 +47,7 @@ footer {
   bottom: 0;
 }
 
-@media only screen and (min-device-width: 481px) {
-  .destination {
-    width: 40%;
-    max-width: 600px;
-    min-width: 500px;
-  }
-
+@media only screen and (min-device-width: 737px) {
   .destination .time.blue {
     background-color: blue;
   }
@@ -68,11 +65,7 @@ footer {
   }
 }
 
-@media only screen and (max-device-width: 480px) {
-  .destination {
-    width: 40%;
-  }
-
+@media only screen and (max-device-width: 736px) {
   .destination-name {
     color: white;
   }
