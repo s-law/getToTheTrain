@@ -1,6 +1,7 @@
 <div class='system'>
-  <h1>Closest Station: {{ destinations.closest }}</h1>
-  <div class = 'destinations'>
+  <h1>Closest Station: {{ destinations.closest || 'TBD' }}</h1>
+  <div class='destinations'>
+    <div class='walktime'> Walk time to station: ~{{ walktime || 'TBD' }} minutes</div>
     <div class='destination' ng-class='classifyTime(destination.departs[0])' ng-repeat='destination in destinations.destinations'>
       <div class='destination-name'>{{ destination.station }}</div>
       <div class='times'>
