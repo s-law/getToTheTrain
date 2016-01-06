@@ -17,6 +17,10 @@ body {
   margin: 0 auto;
 }
 
+.walktime {
+  font-size: 150%;
+}
+
 .destination {
   width: 50%;
   max-width: 600px;
