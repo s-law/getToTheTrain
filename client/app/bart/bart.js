@@ -3,7 +3,16 @@ angular.module('gt3.bart', [])
   Bart.nearestStation()
   .then(function(data) {
     $scope.destinations = data;
+    $scope.walktime = Math.round($scope.destinations.distanceFrom * 20);
   });
+
+  setInterval(function() {
+    Bart.nearestStation()
+    .then(function(data) {
+      $scope.destinations = data;
+      $scope.walktime = Math.round($scope.destinations.distanceFrom * 20 );
+    });
+  }, 30000);
 
   $scope.classifyTime = function(time) {
     var walkSpeed = 3;
