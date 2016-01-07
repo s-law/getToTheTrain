@@ -3,14 +3,14 @@ angular.module('gt3.bart', [])
   Bart.nearestStation()
   .then(function(data) {
     $scope.destinations = data;
-    $scope.walktime = Math.round($scope.destinations.distanceFrom * 20);
+    travelTime();
   });
 
   setInterval(function() {
     Bart.nearestStation()
     .then(function(data) {
       $scope.destinations = data;
-      $scope.walktime = Math.round($scope.destinations.distanceFrom * 20 );
+      travelTime();
     });
   }, 30000);
 
@@ -28,5 +28,10 @@ angular.module('gt3.bart', [])
     } else {
       return 'red';
     }
+  };
+
+  var travelTime = function() {
+    $scope.walktime = Math.round($scope.destinations.distanceFrom * 20);
+    $scope.runtime = Math.round($scope.destinations.distanceFrom * 12);
   };
 })
