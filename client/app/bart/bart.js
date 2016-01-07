@@ -19,11 +19,11 @@ angular.module('gt3.bart', [])
     var runSpeed = 5;
     var howFar = $scope.destinations.distanceFrom;
 
-    if (time > (howFar/(60/walkSpeed)) + 10) {
+    if (time > (howFar*(60/walkSpeed)) + 7) {
       return 'blue';
-    } else if (time > (howFar/(60/walkSpeed)) + 5) {
+    } else if (time > (howFar*(60/walkSpeed)) + 4) {
       return 'green'
-    } else if (time > (howFar/(60/runSpeed)) + 3) {
+    } else if (time > (howFar*(60/runSpeed)) + 2.5) {
       return 'yellow'
     } else {
       return 'red';
