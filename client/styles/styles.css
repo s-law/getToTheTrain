@@ -22,7 +22,7 @@ body {
 .destination {
   width: 50%;
   max-width: 600px;
-  min-width: 500px;
+  min-width: 480px;
   padding: 10px 10px 30px 10px;
   margin: 10px;
   border: 2px solid black;
@@ -68,10 +68,6 @@ footer {
 }
 
 @media only screen and (max-device-width: 736px) {
-  .trim {
-    width: 100%;
-  }
-
   .destination-name {
     color: white;
   }
