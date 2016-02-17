@@ -69,7 +69,8 @@ footer {
 
 @media only screen and (max-device-width: 736px) {
   html, body: {
-    height: 100%;
+    min-width: 524px;
+    min-height: 736px;
   }
 
   .destination-name {
