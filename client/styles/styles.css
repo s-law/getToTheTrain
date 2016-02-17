@@ -7,10 +7,8 @@ body {
 .trim {
   color: white;
   font-size: 200%;
-  width: 100%;
   background-color: red;
   padding: 20px;
-  margin: 0;
   box-shadow: 0 10px 5px #888888;
 }
 .h1, .destinations, .destination, .trim {
@@ -70,6 +68,10 @@ footer {
 }
 
 @media only screen and (max-device-width: 736px) {
+  html, body: {
+    height: 100%;
+  }
+
   .destination-name {
     color: white;
   }
