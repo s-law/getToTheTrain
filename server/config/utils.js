@@ -13,6 +13,18 @@ module.exports = {
 
     return 7918 * Math.asin(Math.sqrt(a)); // 2 * R; R = 3959 mi
   },
+  calcWalkTime: function(distance) {
+    // average walking speed is 3 MPH
+    // (x miles / 3 miles per hour) * 60 minutes per hour
+    // future version will incorporate GMaps call
+    return Math.ceil(distance * 20);
+  },
+  calcRunTime: function(distance) {
+    // decent jogging speed is 5 MPH
+    // (x miles / 5 miles per hour) * 60 minutes per hour
+    // future version will incorporate GMaps call
+    return Math.ceil(distance * 12);
+  },
   bartParse: function(url, cb) {
     request(url, function(err, res, xml) {
       parseString(xml, function(err, result) {
