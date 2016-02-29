@@ -1,37 +1,29 @@
 angular.module('gt3.bart', [])
 .controller('BartController', function($scope, Bart) {
   Bart.nearestStation()
-  .then(function(data) {
-    $scope.destinations = data;
-    travelTime();
+  .then(function(nearestStationData) {
+    $scope.nearestStationData = nearestStationData;
   });
 
   setInterval(function() {
     Bart.nearestStation()
-    .then(function(data) {
-      $scope.destinations = data;
-      travelTime();
+    .then(function(nearestStationData) {
+      $scope.nearestStationData = nearestStationData;
     });
   }, 30000);
 
   $scope.classifyTime = function(time) {
-    var walkSpeed = 3;
-    var runSpeed = 5;
-    var howFar = $scope.destinations.distanceFrom;
+    var walkTime = $scope.nearestStationData.walkTime;
+    var runTime = $scope.nearestStationData.runTime;
 
-    if (time > (howFar*(60/walkSpeed)) + 7) {
+    if (time > walkTime + 7) {
       return 'blue';
-    } else if (time > (howFar*(60/walkSpeed)) + 4) {
+    } else if (time > walkTime + 4) {
       return 'green'
-    } else if (time > (howFar*(60/runSpeed)) + 2.5) {
+    } else if (time > runTime + 2.5) {
       return 'yellow'
     } else {
       return 'red';
     }
   };
-
-  var travelTime = function() {
-    $scope.walktime = Math.round($scope.destinations.distanceFrom * 20);
-    $scope.runtime = Math.round($scope.destinations.distanceFrom * 12);
-  };
-})
+});
