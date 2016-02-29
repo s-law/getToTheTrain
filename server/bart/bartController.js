@@ -1,5 +1,6 @@
 var Bart = require('./bartModel.js');
 var utils = require('../config/utils.js');
+var bartApiKey = require('../config/apiKeys.js').bart;
 
 module.exports = {
   allStations: function(req, res, next) {
@@ -16,7 +17,6 @@ module.exports = {
   nearestStation: function(req, res, next) {
     var lat = req.body.lat;
     var lon = req.body.lon;
-    var bartKey = process.env.BARTKEY || 'MW9S-E7SL-26DU-VV8V';
 
     Bart.find({}, function(err, stations) {
       var closest = stations.map(function(stn) {
@@ -26,7 +26,7 @@ module.exports = {
         return a[1] < b[1] ? a : b;
       });
 
-      utils.bartParse('http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + closest[0] + '&key=' + bartKey, function(apiRes) {
+      utils.bartParse('http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + closest[0] + '&key=' + bartApiKey, function(apiRes) {
         var destEtdObjs = apiRes['root']['station'][0]['etd'];
 
         var destinations = destEtdObjs.map(function(destEtdObj) {
