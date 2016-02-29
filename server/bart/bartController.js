@@ -18,6 +18,8 @@ module.exports = {
     var lat = req.body.lat;
     var lon = req.body.lon;
 
+    // future version will split East Bay and peninsula stations
+    // into separate collections to reduce query time
     Bart.find({}, function(err, stations) {
       var closest = stations.map(function(stn) {
         return [stn.shortname, utils.calcDistance(lat, lon, stn.lat, stn.lon), stn.longname];
@@ -48,8 +50,10 @@ module.exports = {
 
         var destSet = {};
         destSet['closest'] = closest[2];
-        destSet['destinations'] = destinations;
         destSet['distanceFrom'] = closest[1];
+        destSet['walkTime'] = utils.calcWalkTime(closest[1]);
+        destSet['runTime'] = utils.calcRunTime(closest[1]);
+        destSet['destinations'] = destinations;
         res.send(destSet);
       });
     });
