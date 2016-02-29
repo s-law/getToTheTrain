@@ -28,8 +28,8 @@ module.exports = {
         return a[1] < b[1] ? a : b;
       });
 
-      utils.bartParse('http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + closest[0] + '&key=' + bartApiKey, function(apiRes) {
-        var destEtdObjs = apiRes['root']['station'][0]['etd'];
+      utils.bartParse('http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + closest[0] + '&key=' + bartApiKey, function(bartApiData) {
+        var destEtdObjs = bartApiData['root']['station'][0]['etd'];
 
         var destinations = destEtdObjs.map(function(destEtdObj) {
           var destName = destEtdObj.destination[0];
