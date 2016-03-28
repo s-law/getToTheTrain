@@ -11,7 +11,7 @@ module.exports = {
         stationList[station.station] = {
           stopCodeNorth: station.stopCodeNorth,
           stopCodeSouth: station.stopCodeSouth,
-          location: [station.lon, station.lat]
+          location: [station.lat, station.lon]
         }
       });
       res.send(stationList);
