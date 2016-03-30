@@ -1,6 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var parseString = require('xml2js').parseString;
+var bartApiKey = require('../config/apiKeys.js').bart;
 
 module.exports = {
   // optimized Haversine formula:
@@ -26,14 +27,15 @@ module.exports = {
     // future version will incorporate GMaps call
     return Math.ceil(distance * 12);
   },
-  bartParse: function(url, cb) {
-    request(url, function(err, res, xml) {
+  bartParse: function(stationShortName, cb) {
+    var requestUrl = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey;
+    request(requestUrl, function(err, res, xml) {
       parseString(xml, function(err, result) {
         cb(result);
       });
     });
   },
-  caltrainParse: function(url, cb) {
+  caltrainParse: function(stationWebName, cb) {
     request(url, function(err, res, body) {
       var result = {};
 
