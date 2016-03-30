@@ -29,7 +29,12 @@ module.exports = {
         return a[1] < b[1] ? a : b;
       });
 
-      res.send(closest);
+      utils.caltrainParse(closest[0], function(caltrainRawData) {
+        // TODO: package raw data
+
+        // TODO: change data being sent
+        res.send(closest);
+      });
     });
   }
 }
