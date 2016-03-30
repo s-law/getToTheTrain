@@ -1,6 +1,5 @@
 var Bart = require('./bartModel.js');
 var utils = require('../config/utils.js');
-var bartApiKey = require('../config/apiKeys.js').bart;
 
 module.exports = {
   allStations: function(req, res, next) {
@@ -28,12 +27,12 @@ module.exports = {
         return a[1] < b[1] ? a : b;
       });
 
-      utils.bartParse('http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + closest[0] + '&key=' + bartApiKey, function(bartApiData) {
+      utils.bartParse(closest[0], function(bartApiData) {
         var destEtdObjs = bartApiData['root']['station'][0]['etd'];
 
         var destinations = destEtdObjs.map(function(destEtdObj) {
           var destName = destEtdObj.destination[0];
-          var departTimes = []
+          var departTimes = [];
           destEtdObj.estimate.forEach(function(anEtd) {
             var time = anEtd.minutes[0];
             if (time !== 'Leaving') {
