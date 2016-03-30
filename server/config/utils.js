@@ -36,11 +36,9 @@ module.exports = {
     });
   },
   caltrainParse: function(stationWebName, cb) {
-    request(url, function(err, res, body) {
+    var requestUrl = 'http://www.caltrain.com/schedules/realtime/stations/' + stationWebName + '-mobile.html';
+    request(requestUrl, function(err, res, body) {
       var result = {};
-
-      // 511 API does not provide train numbers, so data
-      // must be scraped from caltrain site
       var $ = cheerio.load(body);
 
       // TODO: walk through DOM and extract train nos., 
