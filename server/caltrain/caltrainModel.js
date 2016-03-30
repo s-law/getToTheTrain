@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var CaltrainSchema = new mongoose.Schema({
-  station: String,
+  name: String,
+  webName: String,
   stopCodeNorth: String,
   stopCodeSouth: String,
   lon: Number,
