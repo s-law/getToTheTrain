@@ -1,4 +1,5 @@
 var request = require('request');
+var cheerio = require('cheerio');
 var parseString = require('xml2js').parseString;
 
 module.exports = {
@@ -30,6 +31,21 @@ module.exports = {
       parseString(xml, function(err, result) {
         cb(result);
       });
+    });
+  },
+  caltrainParse: function(url, cb) {
+    request(url, function(err, res, body) {
+      var result = {};
+
+      // 511 API does not provide train numbers, so data
+      // must be scraped from caltrain site
+      var $ = cheerio.load(body);
+
+      // TODO: walk through DOM and extract train nos., 
+      // times, service type
+      // check table header for direction
+
+      cb(result);
     });
   }
 }
