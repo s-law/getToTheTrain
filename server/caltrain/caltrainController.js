@@ -7,7 +7,7 @@ module.exports = {
       var stationList = {};
 
       stations.forEach(function(station) {
-        stationList[station.station] = {
+        stationList[station.name] = {
           stopCodeNorth: station.stopCodeNorth,
           stopCodeSouth: station.stopCodeSouth,
           location: [station.lat, station.lon]
