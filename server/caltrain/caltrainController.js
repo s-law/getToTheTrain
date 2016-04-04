@@ -31,7 +31,7 @@ module.exports = {
       });
 
       utils.caltrainScrape(closest[0], function(caltrainHTML) {
-        var result = {
+        var trainDepartures = {
           south: {
             'Local': [],
             'Limited': [],
@@ -56,14 +56,14 @@ module.exports = {
             $(this).children().each(function() {
               trainListing.push($(this).html());
             });
-            result[trainDirection][trainListing[1]].push({
+            trainDepartures[trainDirection][trainListing[1]].push({
               trainNumber: trainListing[0],
               timeToDepart: parseInt(trainListing[2])
             });
           });
         }
 
-        res.send(result);
+        res.send(trainDepartures);
       });
     });
   }
