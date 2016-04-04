@@ -38,12 +38,32 @@ module.exports = {
   caltrainParse: function(stationWebName, cb) {
     var requestUrl = 'http://www.caltrain.com/schedules/realtime/stations/' + stationWebName + '-mobile.html';
     request(requestUrl, function(err, res, body) {
-      var result = {};
+      var result = {
+        south: {
+          "Local": null,
+          "Limited": null,
+          "Baby Bullet": null
+        },
+        north: {
+          "Local": null,
+          "Limited": null,
+          "Baby Bullet": null
+        }
+      };
       var $ = cheerio.load(body);
+      var $directionHeader = $('#ipsttrains .ipf-st-ip-trains-table-dir-tr');
+      var numberOfDirections = $directionHeader.children().length;
 
-      // TODO: walk through DOM and extract train nos., 
-      // times, service type
-      // check table header for direction
+      for (var direction = 0; direction < numberOfDirections; direction++) {
+        var directionInitial = $directionHeader.children().eq(direction).children().html().charAt(0);
+
+        // Selects the rows of the table for a given direction
+        $('#ipsttrains .ipf-st-ip-trains-subtable').eq(direction).children().each(function() {
+          $(this).children().each(function() {
+            console.log($(this).html())
+          });
+        });
+      }
 
       cb(result);
     });
