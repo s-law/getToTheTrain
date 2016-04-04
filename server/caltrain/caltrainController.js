@@ -32,6 +32,10 @@ module.exports = {
 
       utils.caltrainScrape(closest[0], function(caltrainHTML) {
         var trainDepartures = {
+          closestStation: closest[2],
+          distanceFrom: +closest[1].toFixed(2),
+          walkTime: utils.calcWalkTime(closest[1]),
+          runTime: utils.calcRunTime(closest[1]),
           south: {
             'Local': [],
             'Limited': [],
