@@ -1,5 +1,4 @@
 var request = require('request');
-var cheerio = require('cheerio');
 var parseString = require('xml2js').parseString;
 var bartApiKey = require('../config/apiKeys.js').bart;
 
@@ -38,39 +37,7 @@ module.exports = {
   caltrainScrape: function(stationWebName, cb) {
     var requestUrl = 'http://www.caltrain.com/schedules/realtime/stations/' + stationWebName + '-mobile.html';
     request(requestUrl, function(err, res, body) {
-      var result = {
-        south: {
-          'Local': [],
-          'Limited': [],
-          'Baby Bullet': []
-        },
-        north: {
-          'Local': [],
-          'Limited': [],
-          'Baby Bullet': []
-        }
-      };
-      var $ = cheerio.load(body);
-      var $directionHeader = $('#ipsttrains .ipf-st-ip-trains-table-dir-tr');
-      var numberOfDirections = $directionHeader.children().length;
-
-      for (var direction = 0; direction < numberOfDirections; direction++) {
-        var trainDirection = $directionHeader.children().eq(direction).children().html().substring(0,5).toLowerCase();
-        var trainListing = [];
-
-        // Selects the rows of the table for a given direction
-        $('#ipsttrains .ipf-st-ip-trains-subtable').eq(direction).children().each(function() {
-          $(this).children().each(function() {
-            trainListing.push($(this).html());
-          });
-          result[trainDirection][trainListing[1]].push({
-            trainNumber: trainListing[0],
-            timeToDepart: parseInt(trainListing[2])
-          });
-        });
-      }
-
-      cb(result);
+      cb(body);
     });
   }
 }
