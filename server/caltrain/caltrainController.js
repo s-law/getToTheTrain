@@ -29,7 +29,7 @@ module.exports = {
         return a[1] < b[1] ? a : b;
       });
 
-      utils.caltrainParse(closest[0], function(caltrainRawData) {
+      utils.caltrainScrape(closest[0], function(caltrainRawData) {
         // TODO: package raw data
 
         // TODO: change data being sent
