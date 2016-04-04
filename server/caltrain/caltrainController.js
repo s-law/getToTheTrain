@@ -61,8 +61,9 @@ module.exports = {
 
           // Selects the rows of the table for a given direction
           $('#ipsttrains .ipf-st-ip-trains-subtable').eq(direction).children().each(function() {
-            // Extracts the text from each cell
-            // Unfortunately .text() doesn't accept a delimiter, or else this bit would be much simpler :(
+            // Extracts the text from each cell. Unfortunately .text() doesn't accept
+            // a delimiter, or else this bit would be much simpler. Current order of cells
+            // is train number, service type, and estimated time until departure
             var trainListing = $(this).children().map(function() {
                                   return ($(this).text());
                                 }).toArray();
