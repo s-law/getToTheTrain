@@ -1,5 +1,6 @@
 var Caltrain = require('./caltrainModel.js');
 var utils = require('../config/utils.js');
+var cheerio = require('cheerio');
 
 module.exports = {
   allStations: function(req, res, next) {
@@ -29,11 +30,40 @@ module.exports = {
         return a[1] < b[1] ? a : b;
       });
 
-      utils.caltrainScrape(closest[0], function(caltrainRawData) {
-        // TODO: package raw data
+      utils.caltrainScrape(closest[0], function(caltrainHTML) {
+        var result = {
+          south: {
+            'Local': [],
+            'Limited': [],
+            'Baby Bullet': []
+          },
+          north: {
+            'Local': [],
+            'Limited': [],
+            'Baby Bullet': []
+          }
+        };
+        var $ = cheerio.load(caltrainHTML);
+        var $directionHeader = $('#ipsttrains .ipf-st-ip-trains-table-dir-tr');
+        var numberOfDirections = $directionHeader.children().length;
 
-        // TODO: change data being sent
-        res.send(closest);
+        for (var direction = 0; direction < numberOfDirections; direction++) {
+          var trainDirection = $directionHeader.children().eq(direction).children().html().substring(0,5).toLowerCase();
+          var trainListing = [];
+
+          // Selects the rows of the table for a given direction
+          $('#ipsttrains .ipf-st-ip-trains-subtable').eq(direction).children().each(function() {
+            $(this).children().each(function() {
+              trainListing.push($(this).html());
+            });
+            result[trainDirection][trainListing[1]].push({
+              trainNumber: trainListing[0],
+              timeToDepart: parseInt(trainListing[2])
+            });
+          });
+        }
+
+        res.send(result);
       });
     });
   }
