@@ -30,6 +30,10 @@ module.exports = {
         return a[1] < b[1] ? a : b;
       });
 
+      // Scraping is necessary because:
+      // 1. Trains of the same service type frequently do not have the same stops
+      // 2. Caltrain does not provide its own API
+      // 3. 511.org's API does not include train numbers
       utils.caltrainScrape(closest[0], function(caltrainHTML) {
         var trainDepartures = {
           closestStation: closest[2],
@@ -47,19 +51,21 @@ module.exports = {
             'Baby Bullet': []
           }
         };
+
         var $ = cheerio.load(caltrainHTML);
-        var $directionHeader = $('#ipsttrains .ipf-st-ip-trains-table-dir-tr');
-        var numberOfDirections = $directionHeader.children().length;
+        var $directionHeaders = $('#ipsttrains .ipf-st-ip-trains-table-dir-tr').children();
+        var numberOfDirections = $directionHeaders.length;
 
         for (var direction = 0; direction < numberOfDirections; direction++) {
-          var trainDirection = $directionHeader.children().eq(direction).children().html().substring(0,5).toLowerCase();
-          var trainListing = [];
+          var trainDirection = $directionHeaders.eq(direction).children().text().substring(0,5).toLowerCase();
 
           // Selects the rows of the table for a given direction
           $('#ipsttrains .ipf-st-ip-trains-subtable').eq(direction).children().each(function() {
-            $(this).children().each(function() {
-              trainListing.push($(this).html());
-            });
+            // Extracts the text from each cell
+            // Unfortunately .text() doesn't accept a delimiter, or else this bit would be much simpler :(
+            var trainListing = $(this).children().map(function() {
+                                  return ($(this).text());
+                                }).toArray();
             trainDepartures[trainDirection][trainListing[1]].push({
               trainNumber: trainListing[0],
               timeToDepart: parseInt(trainListing[2])
