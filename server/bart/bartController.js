@@ -49,7 +49,7 @@ module.exports = {
 
         var destSet = {};
         destSet['closest'] = closest[2];
-        destSet['distanceFrom'] = closest[1];
+        destSet['distanceFrom'] = +closest[1].toFixed(2);
         destSet['walkTime'] = utils.calcWalkTime(closest[1]);
         destSet['runTime'] = utils.calcRunTime(closest[1]);
         destSet['destinations'] = destinations;
