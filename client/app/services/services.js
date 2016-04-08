@@ -1,16 +1,16 @@
 angular.module('gt3.services', [])
-.factory('Bart', function ($http, $q) {
+.factory('Systems', function ($http, $q) {
   return {
-    getStations: function() {
+    getStations: function(system) {
       return $http({
         method: 'GET',
-        url: '/api/bart-stations'
+        url: '/api/' + system + '-stations'
       })
       .then(function (res) {
         return res.data;
       })
     },
-    nearestStation: function() {
+    nearestStation: function(system) {
       // promisifies getCurrentPosition()
       function getPos() {
         return $q(function(resolve, reject) {
@@ -33,7 +33,7 @@ angular.module('gt3.services', [])
       return getPos().then(function(pos) {
         return $http({
           method: 'POST',
-          url: '/api/bart-stations',
+          url: '/api/' + system + '-stations',
           data: pos
         })
         .then(function (res) {
