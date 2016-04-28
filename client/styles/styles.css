@@ -7,10 +7,29 @@ body {
 .trim {
   color: white;
   font-size: 200%;
-  background-color: red;
+  background-color: purple;
   padding: 20px;
-  box-shadow: 0 10px 5px #888888;
+  box-shadow: 0 5px 5px #888888;
 }
+
+nav {
+  box-shadow: 0 1px 5px #888888;
+  padding: 10px 0 10px;
+}
+
+nav a {
+  color: purple;
+  padding: 5px 15px;
+  margin: 0px 20px;
+  text-decoration: none;
+}
+
+nav a.selected {
+  color: white;
+  border-radius: 10px;
+  background-color: purple;
+}
+
 .h1, .destinations, .destination, .trim {
   margin: 0 auto;
 }
@@ -19,28 +38,38 @@ body {
   font-size: 150%;
 }
 
-.destination {
+.service-direction {
+  font-size: 175%;
+  margin-top: 30px;
+}
+
+.destination, .service {
   width: 50%;
   max-width: 600px;
-  min-width: 480px;
   padding: 10px 10px 30px 10px;
-  margin: 10px;
+  margin: 10px 10px 0;
   border: 2px solid black;
   display: inline-block;
 }
 
-.destination-name {
-  font-size: 175%;
-  width: 100%;
+.destination-name, .service-name {
+  font-size: 160%;
   padding-bottom: 20px;
   margin: 10px;
 }
 
 .destination .time {
   color: white;
-  width: 150px;
   padding: 20px;
   margin: 10px;
+}
+
+.train {
+  width: 60px;
+  padding: 20px;
+  margin: 10px;
+  color: white;
+  display: inline-block;
 }
 
 footer {
@@ -49,46 +78,58 @@ footer {
   bottom: 0;
 }
 
+.credit {
+  margin-top: 10px;
+}
+
 @media only screen and (min-device-width: 737px) {
-  .destination .time.blue {
+  .destination .time.blue, .train.blue {
     background-color: blue;
   }
 
-  .destination .time.green {
+  .destination .time.green, .train.green {
     background-color: green;
   }
 
-  .destination .time.yellow {
+  .destination .time.yellow, .train.yellow {
     background-color: orange;
   }
 
-  .destination .time.red {
+  .destination .time.red, .train.red {
     background-color: red;
+  }
+
+  .trains.train:first-of-type{
+    font-size: 160%;
   }
 }
 
 @media only screen and (max-device-width: 736px) {
-  .destination-name {
+  .destination, .service {
+    width: 90%;
+  }
+
+  .destination-name, .service-name {
     color: white;
   }
 
-  .destination.blue {
+  .destination.blue, .service.blue{
     background-color: blue;
   }
 
-  .destination.green {
+  .destination.green, .service.green {
     background-color: green;
   }
 
-  .destination.yellow {
+  .destination.yellow, .service.yellow {
     background-color: orange;
   }
 
-  .destination.red {
+  .destination.red, .service.red {
     background-color: red;
   }
 
-  .time:first-of-type {
+  .time:first-of-type .trains.train:first-of-type{
     font-size: 160%;
   }
 
