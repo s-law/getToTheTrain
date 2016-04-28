@@ -1,8 +1,10 @@
 angular.module('gt3.bart', [])
 .controller('BartController', function($scope, Systems) {
+  $scope.hasLoaded = false;
   Systems.nearestStation("bart")
   .then(function(nearestStationData) {
     $scope.nearestStationData = nearestStationData;
+    $scope.hasLoaded = true;
   });
 
   setInterval(function() {
