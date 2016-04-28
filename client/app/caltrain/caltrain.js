@@ -1,9 +1,10 @@
 angular.module('gt3.caltrain', [])
 .controller('CaltrainController', function($scope, Systems) {
+  $scope.hasLoaded = false;
   Systems.nearestStation("caltrain")
   .then(function(nearestStationData) {
-    console.log(JSON.stringify(nearestStationData));
     $scope.nearestStationData = nearestStationData;
+    $scope.hasLoaded = true;
   });
 
   setInterval(function() {
@@ -25,6 +26,19 @@ angular.module('gt3.caltrain', [])
       return 'yellow'
     } else {
       return 'red';
+    }
+  };
+
+  $scope.areTrainsAvailable = function(serviceDirection, serviceType) {
+    if (!$scope.hasLoaded) {
+      return false;
+    }
+    if (serviceType) {
+      return !!$scope.nearestStationData[serviceDirection][serviceType].length;
+    } else {
+      return !!($scope.nearestStationData[serviceDirection]['Local'].length +
+        $scope.nearestStationData[serviceDirection]['Limited'].length +
+        $scope.nearestStationData[serviceDirection]['Baby Bullet'].length);
     }
   };
 });
