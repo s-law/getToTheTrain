@@ -46,7 +46,7 @@ angular.module('gt3.caltrain', [])
     } else {
       var numberOfTrains = 0;
       for (var trainService in $scope.nearestStationData[serviceDirection]) {
-        numberOfTrains += trainService.length;
+        numberOfTrains += $scope.nearestStationData[serviceDirection][trainService].length;
       }
       return !!numberOfTrains;
     }
