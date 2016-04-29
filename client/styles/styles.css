@@ -98,10 +98,6 @@ footer {
   .destination .time.red, .train.red {
     background-color: red;
   }
-
-  .trains.train:first-of-type{
-    font-size: 160%;
-  }
 }
 
 @media only screen and (max-device-width: 736px) {
@@ -129,7 +125,7 @@ footer {
     background-color: red;
   }
 
-  .time:first-of-type .trains.train:first-of-type{
+  .time:first-of-type, .trains .train:first-of-type {
     font-size: 160%;
   }
 
