@@ -7,59 +7,19 @@
   <div class='train-numbers'>
     <div class='walktime'>Walking time to station: ~{{ nearestStationData.walkTime || 'TBD' }} minutes</div>
     <div class='runtime'>Running time to station: ~{{ nearestStationData.runTime || 'TBD' }} minutes</div>
-    <div class='service-direction' ng-show='areTrainsAvailable("north")' ng-cloak>
-      Northbound
-    </div>
-    <div class='service north' ng-class='classifyTime(nearestStationData.north["Local"][0])' ng-show='areTrainsAvailable("north", "Local")' ng-cloak>
-      <div class='service-name'>Local</div>
-      <div class='trains'>
-        <span class='train' ng-class='classifyTime(train.timeToDepart)' ng-repeat='train in nearestStationData.north["Local"]'>
-          <div class='train-number'>{{ train.trainNumber }}</div>
-          <div class='time'>{{ train.timeToDepart }} min</div>
-        </span>
+    <div ng-repeat='direction in directions'>
+      <div class='service-direction' ng-show='areTrainsAvailable(direction)' ng-cloak>
+        {{ direction.charAt(0).toUpperCase() + direction.substring(1) }}bound
       </div>
-    </div>
-    <div class='service north' ng-class='classifyTime(nearestStationData.north["Limited"][0])' ng-show='areTrainsAvailable("north", "Limited")' ng-cloak>
-      <div class='service-name'>Limited</div>
-      <div class='trains'>
-        <span class='train' ng-class='classifyTime(train.timeToDepart)' ng-repeat='train in nearestStationData.north["Limited"]'>
-          <div class='train-number'>{{ train.trainNumber }}</div>
-          <div class='time'>{{ train.timeToDepart }} min</div>
-        </span>
+      <div class='service' ng-class='classifyTime(nearestStationData[direction][service][0])' ng-repeat='service in nearestStationData[direction + "Services"]' ng-show='areTrainsAvailable(direction, service)'>
+        <div class='service-name'>{{ service }}</div>
+        <span class='trains' ng-repeat='train in nearestStationData[direction][service]'>
+          <span class='train' ng-class='classifyTime(train.timeToDepart)'>
+            <div class='train-number'>{{ train.trainNumber }}</div>
+            <div class='time'>{{ train.timeToDepart }} min</div>
+          </span>
+        </div>
       </div>
-    </div>
-    <div class='service north' ng-class='classifyTime(nearestStationData.north["Baby Bullet"][0])' ng-show='areTrainsAvailable("north", "Baby Bullet")' ng-cloak>
-      <div class='service-name'>Baby Bullet</div>
-      <div class='trains'>
-        <span class='train' ng-class='classifyTime(train.timeToDepart)' ng-repeat='train in nearestStationData.north["Baby Bullet"]'>
-          <div class='train-number'>{{ train.trainNumber }}</div>
-          <div class='time'>{{ train.timeToDepart }} min</div>
-        </span>
-      </div>
-    </div>
-    <div class='service-direction' ng-show='areTrainsAvailable("south")' ng-cloak>
-      Southbound
-    </div>
-    <div class='service south' ng-class='classifyTime(nearestStationData.south["Local"][0])' ng-show='areTrainsAvailable("south", "Local")' ng-cloak>
-      <div class='service-name'>Local</div>
-      <span class='train' ng-class='classifyTime(train.timeToDepart)' ng-repeat='train in nearestStationData.south["Local"]'>
-        <div class='train-number'>{{ train.trainNumber }}</div>
-        <div class='time'>{{ train.timeToDepart }} min</div>
-      </span>
-    </div>
-    <div class='service south' ng-class='classifyTime(nearestStationData.south["Limited"][0])' ng-show='areTrainsAvailable("south", "Limited")' ng-cloak>
-      <div class='service-name'>Limited</div>
-      <span class='train' ng-class='classifyTime(train.timeToDepart)' ng-repeat='train in nearestStationData.south["Limited"]'>
-        <div class='train-number'>{{ train.trainNumber }}</div>
-        <div class='time'>{{ train.timeToDepart }} min</div>
-      </span>
-    </div>
-    <div class='service south' ng-class='classifyTime(nearestStationData.south["Baby Bullet"][0])' ng-show='areTrainsAvailable("south", "Baby Bullet")' ng-cloak>
-      <div class='service-name'>Baby Bullet</div>
-      <span class='train' ng-class='classifyTime(train.timeToDepart)' ng-repeat='train in nearestStationData.south["Baby Bullet"]'>
-        <div class='train-number'>{{ train.trainNumber }}</div>
-        <div class='time'>{{ train.timeToDepart }} min</div>
-      </span>
     </div>
   <div class='credit'><a href="https://github.com/s-law/">My GitHub</a></div>
 </div>
