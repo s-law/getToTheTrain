@@ -58,18 +58,10 @@ nav a.selected {
   margin: 10px;
 }
 
-.destination .time {
+.destination .time, .train {
   color: white;
   padding: 20px;
   margin: 10px;
-}
-
-.train {
-  width: 60px;
-  padding: 20px;
-  margin: 10px;
-  color: white;
-  display: inline-block;
 }
 
 footer {
@@ -105,6 +97,10 @@ footer {
     width: 90%;
   }
 
+  .destination:last-of-type, .service:last-of-type {
+    margin-bottom: 10px;
+  }
+
   .destination-name, .service-name {
     color: white;
   }
@@ -125,8 +121,12 @@ footer {
     background-color: red;
   }
 
-  .time:first-of-type, .trains .train:first-of-type {
+  .time:first-of-type {
     font-size: 160%;
+  }
+
+  .train:first-of-type {
+    font-size: 130%;
   }
 
   .credit {
