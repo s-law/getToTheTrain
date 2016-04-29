@@ -13,12 +13,10 @@
       </div>
       <div class='service' ng-class='classifyTime(nearestStationData[direction][service][0])' ng-repeat='service in nearestStationData[direction + "Services"]' ng-show='areTrainsAvailable(direction, service)'>
         <div class='service-name'>{{ service }}</div>
-        <span class='trains' ng-repeat='train in nearestStationData[direction][service]'>
-          <span class='train' ng-class='classifyTime(train.timeToDepart)'>
-            <div class='train-number'>{{ train.trainNumber }}</div>
-            <div class='time'>{{ train.timeToDepart }} min</div>
-          </span>
-        </div>
+        <span class='train' ng-class='classifyTime(train.timeToDepart)' ng-repeat='train in nearestStationData[direction][service]'>
+          <span class='train-number'>#{{ train.trainNumber }} - </span>
+          <span class='train-time'>{{ train.timeToDepart }} min</span>
+        </span>
       </div>
     </div>
   <div class='credit'><a href="https://github.com/s-law/">My GitHub</a></div>
