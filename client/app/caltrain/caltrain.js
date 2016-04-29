@@ -1,8 +1,10 @@
 angular.module('gt3.caltrain', [])
 .controller('CaltrainController', function($scope, Systems) {
+  $scope.directions = ["north", "south"];
   $scope.hasLoaded = false;
   Systems.nearestStation("caltrain")
   .then(function(nearestStationData) {
+    provideTrainServices(nearestStationData);
     $scope.nearestStationData = nearestStationData;
     $scope.hasLoaded = true;
   });
@@ -10,9 +12,15 @@ angular.module('gt3.caltrain', [])
   setInterval(function() {
     Systems.nearestStation("caltrain")
     .then(function(nearestStationData) {
+      provideTrainServices(nearestStationData);
       $scope.nearestStationData = nearestStationData;
     });
   }, 30000);
+
+  var provideTrainServices = function(trainData) {
+    trainData.northServices = Object.keys(trainData.north);
+    trainData.southServices = Object.keys(trainData.south);
+  }
 
   $scope.classifyTime = function(time) {
     var walkTime = $scope.nearestStationData.walkTime;
@@ -36,9 +44,11 @@ angular.module('gt3.caltrain', [])
     if (serviceType) {
       return !!$scope.nearestStationData[serviceDirection][serviceType].length;
     } else {
-      return !!($scope.nearestStationData[serviceDirection]['Local'].length +
-        $scope.nearestStationData[serviceDirection]['Limited'].length +
-        $scope.nearestStationData[serviceDirection]['Baby Bullet'].length);
+      var numberOfTrains = 0;
+      for (var trainService in $scope.nearestStationData[serviceDirection]) {
+        numberOfTrains += trainService.length;
+      }
+      return !!numberOfTrains;
     }
   };
 });
