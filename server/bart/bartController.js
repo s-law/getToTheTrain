@@ -36,24 +36,26 @@ module.exports = {
           destinations: []
         };
 
-        var destEtdObjs = bartApiData['root']['station'][0]['etd'];
+        if (bartApiData !== null) {
+          var destEtdObjs = bartApiData['root']['station'][0]['etd'];
 
-        // populates trainDepartures.destinations
-        destEtdObjs.forEach(function(destEtdObj) {
-          var destination = {
-            station: destEtdObj.destination[0],
-            departs: []
-          };
+          // populates trainDepartures.destinations
+          destEtdObjs.forEach(function(destEtdObj) {
+            var destination = {
+              station: destEtdObj.destination[0],
+              departs: []
+            };
 
-          destEtdObj.estimate.forEach(function(anEtd) {
-            var time = anEtd.minutes[0];
-            if (time !== 'Leaving') {
-              destination.departs.push(time);
-            }
+            destEtdObj.estimate.forEach(function(anEtd) {
+              var time = anEtd.minutes[0];
+              if (time !== 'Leaving') {
+                destination.departs.push(time);
+              }
+            });
+
+            trainDepartures.destinations.push(destination);
           });
-
-          trainDepartures.destinations.push(destination);
-        });
+        }
 
         res.send(trainDepartures);
       });
