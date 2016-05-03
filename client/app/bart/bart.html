@@ -3,7 +3,7 @@
     <a class='selected' href='/#/bart'>BART</a>
     <a href='/#/caltrain'>Caltrain<sup>(beta)</sup></a>
   </nav>
-  <h1>Closest Station: {{ nearestStationData.closest || 'TBD' }}</h1>
+  <h1>Closest Station: {{ nearestStationData.closestStation || 'TBD' }}</h1>
   <div class='destinations'>
     <div class='walktime'>Walking time to station: ~{{ nearestStationData.walkTime || 'TBD' }} minutes</div>
     <div class='runtime'>Running time to station: ~{{ nearestStationData.runTime || 'TBD' }} minutes</div>
@@ -13,7 +13,7 @@
         <span class='time' ng-class='classifyTime(time)' ng-repeat='time in destination.departs'>{{ time }} min</span>
       </div>
     </div>
-    <div ng-hide='nearestStationData.destinations.length'>There is no train data available at the moment.</div>
+    <div class='no-trains' ng-hide='nearestStationData.destinations.length'>There is no train data available at the moment.</div>
   </div>
   <div class='credit'><a href="https://github.com/s-law/">My GitHub</a></div>
 </div>
