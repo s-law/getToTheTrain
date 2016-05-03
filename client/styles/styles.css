@@ -38,6 +38,11 @@ nav a.selected {
   font-size: 150%;
 }
 
+.no-trains {
+  margin: 20px;
+  font-size: 175%;
+}
+
 .service-direction {
   font-size: 175%;
   margin-top: 30px;
