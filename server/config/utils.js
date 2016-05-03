@@ -37,19 +37,13 @@ function calcRunTime(distance) {
 }
 
 function bartParse(stationShortName, cb) {
-  var currentHour = (new Date()).getHours();
-
-  // UTC
-  if (currentHour > 8 && currentHour < 11) {
-    cb(null);
-  } else {
-    var requestUrl = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey;
-    request(requestUrl, function(err, res, xml) {
-      parseString(xml, function(err, result) {
-        cb(result);
-      });
+  // todo: if current time is outside of operating hours, cb(null)
+  var requestUrl = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey;
+  request(requestUrl, function(err, res, xml) {
+    parseString(xml, function(err, result) {
+      cb(result);
     });
-  }
+  });
 }
 
 function caltrainScrape(stationWebName, cb) {
