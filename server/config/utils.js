@@ -37,13 +37,10 @@ function calcRunTime(distance) {
 }
 
 function bartParse(stationShortName, cb) {
-  var currentDate = new Date();
-  var currentHour = currentDate.getHours();
-  var currentDay = currentDate.getDay();
+  var currentHour = (new Date()).getHours();
 
-  if ((currentDay === 6 && (currentHour > 1 && currentHour < 6)) ||
-    (!currentDay && (currentHour > 1 && currentHour < 8)) ||
-    (currentHour > 1 && currentHour < 4)) {
+  // UTC
+  if (currentHour > 8 && currentHour < 11) {
     cb(null);
   } else {
     var requestUrl = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey;
