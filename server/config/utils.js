@@ -45,13 +45,14 @@ function bartParse(stationShortName, cb) {
     (!currentDay && (currentHour > 1 && currentHour < 8)) ||
     (currentHour > 1 && currentHour < 4)) {
     cb(null);
-  }
-  var requestUrl = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey;
-  request(requestUrl, function(err, res, xml) {
-    parseString(xml, function(err, result) {
-      cb(result);
+  } else {
+    var requestUrl = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey;
+    request(requestUrl, function(err, res, xml) {
+      parseString(xml, function(err, result) {
+        cb(result);
+      });
     });
-  });
+  }
 }
 
 function caltrainScrape(stationWebName, cb) {
