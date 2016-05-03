@@ -28,32 +28,34 @@ module.exports = {
       });
 
       utils.bartParse(closest[0], function(bartApiData) {
+        var trainDepartures = {
+          closestStation: closest[2],
+          distanceFrom: +closest[1].toFixed(2),
+          walkTime: utils.calcWalkTime(closest[1]),
+          runTime: utils.calcRunTime(closest[1]),
+          destinations: []
+        };
+
         var destEtdObjs = bartApiData['root']['station'][0]['etd'];
 
-        var destinations = destEtdObjs.map(function(destEtdObj) {
-          var destName = destEtdObj.destination[0];
-          var departTimes = [];
+        // populates trainDepartures.destinations
+        destEtdObjs.forEach(function(destEtdObj) {
+          var destination = {
+            station: destEtdObj.destination[0],
+            departs: []
+          };
+
           destEtdObj.estimate.forEach(function(anEtd) {
             var time = anEtd.minutes[0];
             if (time !== 'Leaving') {
-              departTimes.push(time);
+              destination.departs.push(time);
             }
           });
 
-          var destination = {};
-          destination['station'] = destName;
-          destination['departs'] = departTimes;
-
-          return destination;
+          trainDepartures.destinations.push(destination);
         });
 
-        var destSet = {};
-        destSet['closest'] = closest[2];
-        destSet['distanceFrom'] = +closest[1].toFixed(2);
-        destSet['walkTime'] = utils.calcWalkTime(closest[1]);
-        destSet['runTime'] = utils.calcRunTime(closest[1]);
-        destSet['destinations'] = destinations;
-        res.send(destSet);
+        res.send(trainDepartures);
       });
     });
   }
