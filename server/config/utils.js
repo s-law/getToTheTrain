@@ -37,6 +37,7 @@ function calcRunTime(distance) {
 }
 
 function bartParse(stationShortName, cb) {
+  // todo: if current time is outside of operating hours, cb(null)
   var requestUrl = 'http://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey;
   request(requestUrl, function(err, res, xml) {
     parseString(xml, function(err, result) {
@@ -46,6 +47,7 @@ function bartParse(stationShortName, cb) {
 }
 
 function caltrainScrape(stationWebName, cb) {
+  // todo: if current time is outside of operating hours, cb(null)
   var requestUrl = 'http://www.caltrain.com/schedules/realtime/stations/' + stationWebName + '-mobile.html';
   request(requestUrl, function(err, res, body) {
     cb(body);
