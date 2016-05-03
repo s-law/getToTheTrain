@@ -36,7 +36,7 @@ module.exports = {
           destinations: []
         };
 
-        if (bartApiData !== null || bartApiData['root']['message']['warning']) {
+        if (bartApiData !== null && !bartApiData['root']['message']['warning']) {
           var destEtdObjs = bartApiData['root']['station'][0]['etd'];
 
           // populates trainDepartures.destinations
