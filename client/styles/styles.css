@@ -78,6 +78,10 @@ footer {
 }
 
 @media only screen and (min-device-width: 737px) {
+  .train {
+    margin: 10px;
+  }
+
   .destination .time.blue, .train.blue {
     background-color: blue;
   }
