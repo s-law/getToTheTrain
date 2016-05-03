@@ -13,6 +13,7 @@
         <span class='time' ng-class='classifyTime(time)' ng-repeat='time in destination.departs'>{{ time }} min</span>
       </div>
     </div>
+    <div ng-hide='nearestStationData.destinations.length'>There is no train data available at the moment.</div>
   </div>
   <div class='credit'><a href="https://github.com/s-law/">My GitHub</a></div>
 </div>
