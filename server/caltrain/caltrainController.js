@@ -52,26 +52,28 @@ module.exports = {
           }
         };
 
-        var $ = cheerio.load(caltrainHTML);
-        var $directionHeaders = $('#ipsttrains .ipf-st-ip-trains-table-dir-tr').children();
-        var numberOfDirections = $directionHeaders.length;
+        if (caltrainHTML !== null) {
+          var $ = cheerio.load(caltrainHTML);
+          var $directionHeaders = $('#ipsttrains .ipf-st-ip-trains-table-dir-tr').children();
+          var numberOfDirections = $directionHeaders.length;
 
-        for (var direction = 0; direction < numberOfDirections; direction++) {
-          var trainDirection = $directionHeaders.eq(direction).children().text().substring(0,5).toLowerCase();
+          for (var direction = 0; direction < numberOfDirections; direction++) {
+            var trainDirection = $directionHeaders.eq(direction).children().text().substring(0,5).toLowerCase();
 
-          // Selects the rows of the table for a given direction
-          $('#ipsttrains .ipf-st-ip-trains-subtable').eq(direction).children().each(function() {
-            // Extracts the text from each cell. Unfortunately .text() doesn't accept
-            // a delimiter, or else this bit would be much simpler. Current order of cells
-            // is train number, service type, and estimated time until departure
-            var trainListing = $(this).children().map(function() {
-                                  return ($(this).text());
-                                }).toArray();
-            trainDepartures[trainDirection][trainListing[1]].push({
-              trainNumber: trainListing[0],
-              timeToDepart: parseInt(trainListing[2])
+            // Selects the rows of the table for a given direction
+            $('#ipsttrains .ipf-st-ip-trains-subtable').eq(direction).children().each(function() {
+              // Extracts the text from each cell. Unfortunately .text() doesn't accept
+              // a delimiter, or else this bit would be much simpler. Current order of cells
+              // is train number, service type, and estimated time until departure
+              var trainListing = $(this).children().map(function() {
+                                    return ($(this).text());
+                                  }).toArray();
+              trainDepartures[trainDirection][trainListing[1]].push({
+                trainNumber: trainListing[0],
+                timeToDepart: parseInt(trainListing[2])
+              });
             });
-          });
+          }
         }
 
         res.send(trainDepartures);
