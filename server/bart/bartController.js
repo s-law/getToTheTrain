@@ -39,7 +39,7 @@ module.exports = {
         if (bartApiData !== null && bartApiData['root']['message'][0] === '') {
           var destEtdObjs = bartApiData['root']['station'][0]['etd'];
 
-          // populates trainDepartures.destinations
+          // this populates trainDepartures.destinations
           destEtdObjs.forEach(function(destEtdObj) {
             var destination = {
               station: destEtdObj.destination[0],
