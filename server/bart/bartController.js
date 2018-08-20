@@ -67,7 +67,9 @@ module.exports = {
 
 function determineClosestStation(lat, lon) {
     const stationSet = lon < -122.36 ? 'west' : 'east';
-    const regionalBartStations = stations.bart[stationSet];
+    const regionalBartStations = Object.keys(stations.bart[stationSet]).map(function(stationKey) {
+        return stations.bart[stationSet][stationKey];
+    });
 
     const closestBartStation = regionalBartStations.map(function(station) {
         return {
