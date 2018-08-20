@@ -58,16 +58,19 @@ function bartParse(stationShortName, cb) {
 
 function bartJson(stationShortName, requestTime, cb) {
     // todo: if current time is outside of operating hours, cb(null)
-    if (!cache.bart.hasOwnProperty(stationShortName) || requestTime - cache.bart.stationShortName.lastRequestedTime > 54000) {
+    if (!cache.bart.hasOwnProperty(stationShortName) || requestTime - cache.bart[stationShortName].lastRequestedTime > 54000) {
         const requestUrl = 'https://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey + "&json=y";
 
         request(requestUrl, function(err, res, body) {
-            cache.bart.stationShortName.response = body;
-            cache.bart.stationShortName.lastRequestedTime = requestTime;
+            cache.bart[stationShortName] = {
+                response: body,
+                lastRequestedTime: requestTime
+            };
+
             cb(body, false);
         });
     } else {
-        cb(cache.bart.stationShortName.response, true);
+        cb(cache.bart[stationShortName].response, true);
     }
 }
 
