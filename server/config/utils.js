@@ -62,12 +62,14 @@ function bartJson(stationShortName, requestTime, cb) {
         const requestUrl = 'https://api.bart.gov/api/etd.aspx?cmd=etd&orig=' + stationShortName + '&key=' + bartApiKey + "&json=y";
 
         request(requestUrl, function(err, res, body) {
+            const json = JSON.parse(body);
+
             cache.bart[stationShortName] = {
-                response: body,
+                response: json,
                 lastRequestedTime: requestTime
             };
 
-            cb(body, false);
+            cb(json, false);
         });
     } else {
         cb(cache.bart[stationShortName].response, true);
