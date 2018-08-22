@@ -3,10 +3,11 @@ var utils = require('../config/utils.js');
 module.exports = {
     info: function(req, res, next) {
         const info = {
-            updateRequired: false,
-            showMessage: false,
-            version: 1,
-            message: "Hi!"
+            blockAccess: false,
+            updateAvailable: false,
+            detailedMessageAvailable: true,
+            message: "Hi!",
+            version: 1
         }
 
         res.send(info);
