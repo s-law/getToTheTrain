@@ -5,7 +5,7 @@ const cache = require('../station/cache.js');
 
 let supportedSystems = {
     default: ['bart'],
-    mobile: ['bart', 'caltrain'],
+    mobile: ['bart'],
     web: ['bart', 'caltrain'],
     nextGen: ['bart', 'caltrain', 'mbs', 'smart']
 };
