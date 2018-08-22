@@ -37,15 +37,19 @@ function departureInformationForClosestStation(req, res, next) {
             distanceFrom: +dist.toFixed(2),
             walkTime: utils.calcWalkTime(dist),
             runTime: utils.calcRunTime(dist),
-            destinations: []
+            departureGroups: []
         };
 
         utils.bartJson(closestStation.shortname, currentTime, function(bartApiData, isCached) {
             const destinations = !!bartApiData && !bartApiData.root.message ? bartApiData.root.station[0].etd : [];
+            const departureGroup = {
+                title: null,
+                destinations: destinations
+            };
 
             destinations.forEach(function(destination) {
-                const destinationInfo = {
-                    station: destination.destination,
+                const serviceInfo = {
+                    title: destination.destination,
                     departs: []
                 };
 
@@ -53,14 +57,19 @@ function departureInformationForClosestStation(req, res, next) {
                     const minutes = estimate.minutes
 
                     if (minutes !== 'Leaving') {
-                        destinationInfo.departs.push(minutes);
+                        const departure = {
+                            title: null,
+                            minutes: minutes
+                        };
+
+                        serviceInfo.departs.push(departure);
                     }
                 });
 
-                departureInfo.destinations.push(destinationInfo);
+                departureGroup.destinations.push(serviceInfo);
             });
 
-            departureInfo.isCached = isCached;
+            departureInfo.departureGroups.push(departureGroup);
             res.send(departureInfo);
         });
     } else {
