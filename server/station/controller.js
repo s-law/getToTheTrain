@@ -44,7 +44,7 @@ function departureInformationForClosestStation(req, res, next) {
             const destinations = !!bartApiData && !bartApiData.root.message ? bartApiData.root.station[0].etd : [];
             const departureGroup = {
                 title: null,
-                destinations: []
+                services: []
             };
 
             destinations.forEach(function(destination) {
